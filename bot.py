@@ -175,7 +175,7 @@ async def find(ctx, *args):
 @bot.command(name="authenticate", aliases=["auth", "trust"])
 async def auth(ctx, user:discord.Member):
 	if ctx.message.author.id == 354992856609325058:
-		msg = f"\n# {user} ID\n{user.id}\n"
+		msg = f"\n# {user} ID\n{user.id}\n"  # TODO fix issues with non ASCII characters
 		media.append_file("credentials.md", msg)
 		await ctx.send(f"Added \"{user}\" to list of trusted admins")
 		await media.log(ctx, True)
