@@ -107,23 +107,23 @@ async def find(ctx, *args):
 	player  = args[1].lower() if len(args) >= 2 else False
 	count   = args[2]         if len(args) >= 3 else None
 	commands_list = []
-	for command in bot.commands:
-		commands_list.append(str(command))
+	for bot_command in bot.commands:
+		commands_list.append(str(bot_command))
 
 	# print(commands_list)
 	if command not in commands_list:
 		player, command = command, player
 	if command:
-		if isinstance(count, int):
+		try:
 			count = int(command)
 			command = False
-		else: count = False
+		except ValueError: count = False
 	if player:
-		if isinstance(player, int):
+		try:
 			count = int(player)
 			player = False
-		else: count = False
-	print(f"DEBUG: command={command}, player={player}, count={count}")
+		except ValueError: count = False
+	# print(f"DEBUG: command={command}, player={player}, count={count}")
 
 	resp = []
 	log_data = media.read_file("log.txt", filter=True)[::-1]

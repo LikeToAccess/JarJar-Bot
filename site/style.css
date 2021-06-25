@@ -1,0 +1,156 @@
+@import url('https://fonts.googleapis.com/css2?family=Comfortaa&family=JetBrains+Mono:wght@300&family=Raleway&display=swap');
+html {
+	overflow: scroll;
+  	overflow-x: hidden;
+}
+html::-webkit-scrollbar {
+  display: none;
+}
+
+body {
+	background-color: rgb(48, 50, 59);
+    font-family: 'Raleway', sans-serif;
+    margin: 0;
+    color: white;
+}
+
+div.content {
+    padding: 10px;
+}
+
+h1, h2, h3, h4, h5, h6 {
+	font-family: 'Comfortaa', cursive;
+	letter-spacing: -0.2px;
+	word-spacing: -0.8px;
+	color: rgb(255, 255, 255);
+	font-weight: normal;
+	text-decoration: none;
+	font-style: normal;
+	font-variant: normal;
+	text-transform: none;
+}
+h1 {
+	font-size: 29px;
+}
+.center {
+    text-align: center;
+}
+small {
+    font-size: 9px;
+}
+.libraryitem{
+    background-color: #282931;
+}
+.libraryitem:hover{
+    background-color: #1b1c22;
+}
+p {
+	
+	font-size: 20px;
+	letter-spacing: -0.2px;
+	word-spacing: -1.2px;
+	color: rgb(241, 241, 241);
+	font-weight: normal;
+	text-decoration: none;
+	font-style: normal;
+	font-variant: normal;
+	text-transform: none;
+}
+h1 a {
+    font-family: 'Comfortaa', cursive;
+	letter-spacing: -0.2px;
+    font-size: 25px;
+	word-spacing: -0.8px;
+	color: rgb(216, 76, 76);
+	font-weight: normal;
+	text-decoration: none;
+	font-style: normal;
+	font-variant: normal;
+	text-transform: none;
+}
+a {
+	font-size: 16px;
+	font-family: Arial, Helvetica, sans-serif;
+	position: sticky;
+	left: 10px;
+	top: 20px;
+	color: rgb(216, 76, 76);
+}
+a:link, a:visited {
+	text-decoration: none!important;
+}
+
+.nav-black, .nav-hover-black:hover {
+	color: #ffffff!important;
+	background-color: #000!important;
+}
+.nav-white, .nav-hover-white:hover {
+	color: #000!important;
+	background-color: #ffffff!important;
+}
+.nav-bar {
+	width: 100%;
+	overflow: hidden;
+	background-color: #000;
+}
+.nav-bar .nav-bar-item {
+	padding: 8px 16px;
+	float: left;
+	background-color: inherit;
+	color: inherit;
+	width: auto;
+	border: none;
+	outline: none;
+	display: block;
+	font-size: 0.9em;
+}
+.nav-button {color: #000000;
+	background-color: #f1f1f1;
+	padding: 8px 16px;
+}
+.nav-button:hover {
+	color: #000000!important;
+	background-color: #cccccc!important;
+}
+
+.right {
+	float: right!important;
+}
+.fixed {
+	position: fixed;
+}
+.pad-bot {
+	padding-bottom: 50px;
+}
+.pad-top {
+	padding-top: 50px;
+}
+.pad-left {
+	padding-left: 50px;
+}
+.pad-right {
+	padding-right: 50px;
+}
+.top {
+	z-index: 99!important;
+}
+.bottom {
+	z-index: -99!important;
+}
+.center {
+	align-content: center;
+	align-items: center;
+}
+.activeNav {
+	background-color: #646464;
+	padding: 8px 16px;
+	float: left;
+	color: inherit;
+	width: auto;
+	border: none;
+	outline: none;
+	display: block;
+	font-size: 0.9em;
+	width: 100%;
+	overflow: hidden;
+}
