@@ -170,6 +170,17 @@ async def find(ctx, *args):
 			await channel.send(part)
 	except HTTPException: await channel.send("Error, no results!")
 
+@bot.command(name="authenticate", aliases=["auth"])
+async def auth(ctx, user:discord.Member):
+	if ctx.message.author.id == 354992856609325058:
+		msg = f"\n# {user} ID\n{user.id}\n"
+		media.append_file("credentials.md", msg)
+		await ctx.send(f"Added \"{user}\" to list of trusted admins")
+		await media.log(ctx, True)
+	else:
+		await ctx.send("Only LikeToAccess can run this!")
+		await media.log(ctx, False)
+
 
 async def set_status(activity, status=discord.Status.online):
 	activity = discord.Game(activity) if isinstance(activity, str) else activity
