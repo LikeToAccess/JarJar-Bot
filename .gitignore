@@ -9,6 +9,9 @@ __pycache__/
 # CREDENTIALS
 credentials.md
 
+# START FILES
+run.cmd
+update.cmd
 
 # LOGS
 log.txt
