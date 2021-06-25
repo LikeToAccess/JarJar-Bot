@@ -191,11 +191,13 @@ async def update(ctx):
 	filename = "out.txt"
 	media.remove_file(filename)
 	try:
-		os.system(f"update.cmd &> {filename}")
+		os.system(f"update.cmd >> {filename}")
 		sleep(5)
-		ctx.send(media.read_file(filename))
+		await ctx.send("\n".join(media.read_file(filename)).split(".git")[1])
+		os.system("start run.cmd")
+		quit()
 	except OSError as error:
-		ctx.send(f"Error:\n```{error}```")
+		await ctx.send(f"Error:\n```{error}```")
 
 
 
