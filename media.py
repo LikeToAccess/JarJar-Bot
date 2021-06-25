@@ -67,7 +67,7 @@ def write_file(filename, msg):
 
 def append_file(filename, msg):
 	with open(filename, "a") as file:
-		file.write(f"{msg}")
+		file.write(f"{msg}\n")
 
 def filter_list(lines, filename=False):
 	if filename:

@@ -170,7 +170,7 @@ async def find(ctx, *args):
 			await channel.send(part)
 	except HTTPException: await channel.send("Error, no results!")
 
-@bot.command(name="authenticate", aliases=["auth"])
+@bot.command(name="authenticate", aliases=["auth", "trust"])
 async def auth(ctx, user:discord.Member):
 	if ctx.message.author.id == 354992856609325058:
 		msg = f"\n# {user} ID\n{user.id}\n"
