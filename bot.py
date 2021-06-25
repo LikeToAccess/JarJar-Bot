@@ -159,8 +159,8 @@ async def find(ctx, *args):
 
 	print(f"DEBUG: command={command}, player={player}, count={count}")
 
-	channel = bot.get_channel(529865166804746261)
-	if ctx.channel.id != 529865166804746261:
+	channel = bot.get_channel(857830007194517524)
+	if ctx.channel.id != 857830007194517524:
 		await ctx.send(f"Output redirected to {channel.name}")
 	await channel.send(f"**Results of query with options, command={command}, player={player}, count={count}:**")
 	try:
