@@ -11,6 +11,8 @@
 # py version        : 3.8.2 (must run on 3.6 or higher)
 #==============================================================================
 from datetime import date
+from time import sleep
+import os
 import discord
 from discord.ext import commands#, tasks
 from discord.errors import HTTPException
@@ -76,7 +78,6 @@ async def feed(ctx, *args):
 		.replace("</script>","")
 	)
 
-	# feed_content = f'''<h4>({current_date})</h4>\n<div id="image" style="display:inline;"><img src="{avatar}" alt="Disord user Avatar for {ctx.author.name}" width=45px height=45px></div>\n<div id="texts" style="display:inline; white-space:nowrap;"><p>{msg}</p></div>\n<hr class="solid">'''
 	feed_content = f'''<h4>({current_date})</h4>\n<img src="{avatar}" alt="Disord user Avatar for {author.name}" align="left" width=45px height=45px style="padding-right:10px">\n<a href="https://discord.com/users/{author.id}">{author.name}</a>\n<p style="padding-top:10px;">{msg}</p>\n<hr class="solid">'''
 	await ctx.send(f"```html\n{feed_content}\n```")
 
@@ -170,6 +171,7 @@ async def find(ctx, *args):
 			await channel.send(part)
 	except HTTPException: await channel.send("Error, no results!")
 
+# LIKETOACCESS ONLY COMMAND
 @bot.command(name="authenticate", aliases=["auth", "trust"])
 async def auth(ctx, user:discord.Member):
 	if ctx.message.author.id == 354992856609325058:
@@ -180,6 +182,21 @@ async def auth(ctx, user:discord.Member):
 	else:
 		await ctx.send("Only LikeToAccess can run this!")
 		await media.log(ctx, False)
+
+# ADMIN ONLY COMMAND
+@bot.command()
+async def update(ctx):
+	if not await check_perms(ctx):
+		return
+	filename = "out.txt"
+	media.remove_file(filename)
+	try:
+		os.system(f"update.cmd &> {filename}")
+		sleep(5)
+		ctx.send(media.read_file(filename))
+	except OSError as error:
+		ctx.send(f"Error:\n```{error}```")
+
 
 
 async def set_status(activity, status=discord.Status.online):
