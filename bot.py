@@ -195,7 +195,7 @@ async def auth(ctx, user:discord.Member):
 # ADMIN ONLY COMMAND
 @bot.command()
 async def update(ctx, *args):
-	if not await check_perms(ctx):
+	if not await check_perms(ctx, log_data=False):
 		return
 	filename = filenames["update_log"]
 	media.remove_file(filename)
