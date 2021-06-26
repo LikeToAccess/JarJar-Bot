@@ -78,7 +78,7 @@ async def feed(ctx, *args):
 		.replace("</script>","")
 	)
 
-	feed_content = f'''<h4>({current_date})</h4>\n<img src="{avatar}" alt="Disord user Avatar for {author.name}" align="left" width=45px height=45px style="padding-right:10px">\n<a href="https://discord.com/users/{author.id}">{author.name}</a>\n<p style="padding-top:10px;">{msg}</p>\n<hr class="solid">'''
+	feed_content = f'''<h4>({current_date})</h4>\n<a href="https://discord.com/users/{author.id}"><img src="{avatar}" alt="Disord user Avatar for {author.name}" align="left" width=45px height=45px style="padding-right:10px">\n{author.name}</a>\n<p style="padding-top:10px;">{msg}</p>\n<hr class="solid">'''
 	await ctx.send(f"```html\n{feed_content}\n```")
 
 	html_lines = media.read_file(filename)
