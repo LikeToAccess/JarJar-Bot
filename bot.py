@@ -21,7 +21,12 @@ import markdown
 import media
 
 
-credentials = media.read_file("credentials.md", filter=True)
+filenames = {
+	"launcher_status": "launcher_status.txt",
+	"credentials":     "credentials.md",
+	"bad_words":       "bad_words.txt",
+}
+credentials = media.read_file(filenames["credentials"], filter=True)
 token = credentials[0]
 allowed_users = credentials[2:]
 bot = commands.Bot(command_prefix=[
@@ -34,31 +39,19 @@ bot = commands.Bot(command_prefix=[
 async def on_ready():
 	# check_logs.start()
 	print(f"{bot.user} successfuly connected!")
-	await set_status("you for a fool! John McAfee payed his taxes!", discord.Status.online)
+	# await set_status("you for a fool! John McAfee payed his taxes!", discord.Status.online)
+	await format_status(media.read_file(filenames["launcher_status"]))
 
 # ADMIN ONLY COMMAND
 @bot.command(name="status")
 async def launcher_status(ctx, *args):
 	if not await check_perms(ctx):
 		return
+	msg = " ".join(args)
 	if len(args) == 1:
-		args = " ".join(args).upper()
-	else:
-		args = " ".join(args)
-	if "down" in args.lower() or "off" in args.lower():
-		launcher = False
-		await set_status(
-			activity=discord.Activity(type=discord.ActivityType.watching,
-			name=f"Launcher-Status: {args}"),
-			status=discord.Status.do_not_disturb
-		)
-	else:
-		launcher = True
-		await set_status(
-			activity=discord.Activity(type=discord.ActivityType.watching,
-			name=f"Launcher-Status: {args}"),
-		)
-	launcher = "online" if launcher else "offline"
+		msg = msg.upper()
+	media.write_file(filenames["launcher_status"], msg)
+	launcher = "online" if await format_status(msg) else "offline"
 	await ctx.send(f"Status updated. Launcher {launcher}!")
 
 # ADMIN ONLY COMMAND
@@ -107,9 +100,8 @@ async def help_menu(ctx):
 # PUBLIC COMMAND
 @bot.command(aliases=["yaaminudes","nudes","sex","amogus"])
 async def balls(ctx):
-	filename = "bad_words.txt"
 	sentance_length = 5
-	words = media.read_file(filename)
+	words = media.read_file(filenames["bad_words"])
 	msg = " ".join([random.choice(words) for i in range(sentance_length)]).capitalize() + "."
 	await ctx.author.send(msg)
 
@@ -215,7 +207,21 @@ async def update(ctx):
 	except OSError as error:
 		await ctx.send(f"Error:\n```{error}```")
 
-
+async def format_status(msg):
+	if "down" in msg.lower() or "off" in msg.lower():
+		launcher = False
+		await set_status(
+			activity=discord.Activity(type=discord.ActivityType.watching,
+			name=f"Launcher-Status: {msg}"),
+			status=discord.Status.do_not_disturb
+		)
+	else:
+		launcher = True
+		await set_status(
+			activity=discord.Activity(type=discord.ActivityType.watching,
+			name=f"Launcher-Status: {msg}"),
+		)
+	return launcher
 
 async def set_status(activity, status=discord.Status.online):
 	activity = discord.Game(activity) if isinstance(activity, str) else activity
