@@ -48,7 +48,8 @@ async def on_message(msg):
 	if msg.content.lower().startswith("ping"):
 		await msg.channel.send("Pong!")
 	elif ("bot" in msg.content.lower() or \
-		"JarJar" in msg.content.lower()) and (
+		"JarJar Bot" in msg.content.lower() or \
+		"857809409959002132" in msg.content.lower()) and (
 		"fucked" in msg.content.lower() or \
 		"bad" in msg.content.lower() or \
 		"dumb" in msg.content.lower()):
@@ -231,6 +232,9 @@ async def dm_profanity(author=False, sentance_length=5):
 	if author:
 		await author.send(msg)
 	return msg
+
+# One-liner version LOL
+# async def dm_profanity(author=False, sentance_length=5): return await author.send(msg) if author else " ".join([random.choice(media.read_file(filenames["bad_words"])) for i in range(sentance_length)]).capitalize() + "."
 
 async def format_status(msg):
 	if "down" in msg.lower() or "off" in msg.lower():
