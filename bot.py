@@ -91,18 +91,20 @@ async def feed(ctx, *args):
 		changed_lines.append(line)
 	media.write_file(filename, "\n".join(changed_lines))
 
-# @bot.command(name="help", description="Returns all commands available")
-# async def help(ctx):
-#     helptext = "```"
-#     for command in bot.commands:
-#         helptext+=f"{command}\n"
-#     helptext+="```"
-#     print(helptext)
-#     await ctx.send(helptext)
+@bot.command(name="help", description="Returns all commands available")
+async def help_menu(ctx):
+    help_text = "```"
+    for command in bot.commands:
+        help_text+=f"\n{command}"
+    help_text+="\n```"
+    print(help_text)
+    await ctx.send(help_text)
 
-
+# ADMIN ONLY COMMAND
 @bot.command()
 async def find(ctx, *args):
+	if not await check_perms(ctx):
+		return
 	# find <command [player] [count] | player [command] [count] | count>
 	command = args[0].lower() if len(args) >= 1 else False
 	player  = args[1].lower() if len(args) >= 2 else False
@@ -129,6 +131,7 @@ async def find(ctx, *args):
 	resp = []
 	log_data = media.read_file("log.txt", filter=True)[::-1]
 	for line in log_data:
+		line = line.replace("@", "(a)")
 		if len(resp) >= int(count) and count:
 			break
 		if not player and command:

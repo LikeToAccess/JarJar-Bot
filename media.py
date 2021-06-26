@@ -19,10 +19,11 @@ async def log(ctx, authenticated, filename="log.txt"):
 		await ctx.message.delete()
 		await ctx.send(f"User *\"{ctx.author}\"*, is not in the allowed users list!\nThis event has been logged.")
 	authenticated = "FAILED to execute" if not authenticated else "SUCCESFULLY executed"
-	data = ctx.message.content
+	data = ctx.message.content.replace("@","(a)")
 	data = f"[{datetime.now()}]{ctx.message.author} :: {authenticated} \"{data}\"\n"
 	print(data.strip("\n"))
-	append_file(filename, data.replace("\n","\\n"))
+	data = data.replace("\n","\\n")
+	append_file(filename, data[:len(data)-2])
 
 def credit(author, filename, resolution, file_size):
 	msg = f"{filename}|{resolution}|{file_size}"
