@@ -116,7 +116,7 @@ async def balls(ctx):
 # PUBLIC COMMAND
 @bot.command()
 async def ping(ctx):
-	await ctx.author.send("Pong!")
+	await ctx.send("Pong!")
 
 # ADMIN ONLY COMMAND
 @bot.command()
