@@ -13,6 +13,7 @@
 from datetime import date
 from time import sleep
 import os
+import random
 import discord
 from discord.ext import commands#, tasks
 from discord.errors import HTTPException
@@ -91,14 +92,24 @@ async def feed(ctx, *args):
 		changed_lines.append(line)
 	media.write_file(filename, "\n".join(changed_lines))
 
+# PUBLIC COMMAND
 @bot.command(name="help", description="Returns all commands available")
 async def help_menu(ctx):
-    help_text = "```"
-    for command in bot.commands:
-        help_text+=f"\n{command}"
-    help_text+="\n```"
-    print(help_text)
-    await ctx.send(help_text)
+	help_text = "```"
+	for command in bot.commands:
+		help_text+=f"\n{command}"
+	help_text+="\n```"
+	print(help_text)
+	await ctx.send(help_text)
+
+# PUBLIC COMMAND
+@bot.command(aliases=["yaaminudes","nudes","sex","amogus"])
+async def balls(ctx):
+	filename = "bad_words.txt"
+	sentance_length = 5
+	words = media.read_file(filename)
+	msg = " ".join([random.choice(words) for i in range(sentance_length)]).capitalize() + "."
+	await ctx.author.send(msg)
 
 # ADMIN ONLY COMMAND
 @bot.command()
