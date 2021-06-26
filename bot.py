@@ -51,6 +51,7 @@ async def on_message(msg):
 		"fucked" in msg.content.lower() or \
 		"bad" in msg.content.lower() or \
 		"dumb" in msg.content.lower()):
+			await msg.author.send("Shud up, I'm the GREATEST bot!!!")
 			await dm_profanity(msg.author)
 	await bot.process_commands(msg)
 
