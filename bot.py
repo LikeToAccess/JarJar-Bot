@@ -43,6 +43,12 @@ async def on_ready():
 	# await set_status("you for a fool! John McAfee payed his taxes!", discord.Status.online)
 	await format_status(media.read_file(filenames["launcher_status"])[0])
 
+@bot.event
+async def on_message(msg):
+	if msg.content.lower().startswith("ping"):
+		await msg.channel.send("Pong!")
+
+
 # ADMIN ONLY COMMAND
 @bot.command(name="status")
 async def launcher_status(ctx, *args):
@@ -105,6 +111,11 @@ async def balls(ctx):
 	words = media.read_file(filenames["bad_words"])
 	msg = " ".join([random.choice(words) for i in range(sentance_length)]).capitalize() + "."
 	await ctx.author.send(msg)
+
+# PUBLIC COMMAND
+@bot.command()
+async def ping(ctx):
+	await ctx.author.send("Pong!")
 
 # ADMIN ONLY COMMAND
 @bot.command()
