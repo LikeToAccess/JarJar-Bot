@@ -47,7 +47,8 @@ async def on_ready():
 async def on_message(msg):
 	if msg.content.lower().startswith("ping"):
 		await msg.channel.send("Pong!")
-	elif "bot" in msg.content.lower() and (
+	elif ("bot" in msg.content.lower() or \
+		"JarJar" in msg.content.lower()) and (
 		"fucked" in msg.content.lower() or \
 		"bad" in msg.content.lower() or \
 		"dumb" in msg.content.lower()):
