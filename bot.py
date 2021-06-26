@@ -55,6 +55,7 @@ async def on_message(msg):
 		"dumb" in msg.content.lower()):
 			await msg.author.send("Shud up, I'm the GREATEST bot!!!")
 			await dm_profanity(msg.author)
+	print(msg)
 	await bot.process_commands(msg)
 
 
@@ -75,7 +76,7 @@ async def launcher_status(ctx, *args):
 async def feed(ctx, *args):
 	if not await check_perms(ctx):
 		return
-
+	start_break = "<!-- INJECT FEED START -->"
 	end_break = "<!-- INJECT FEED END -->"
 	filename = "site/index.html"
 	avatar = get_author_avatar(ctx)
@@ -89,17 +90,19 @@ async def feed(ctx, *args):
 	)
 
 	feed_content = f'''<h4>({current_date})</h4>\n<a href="https://discord.com/users/{author.id}"><img src="{avatar}" alt="Disord user Avatar for {author.name}" align="left" width=45px height=45px style="padding-right:10px">\n{author.name}</a>\n<p style="padding-top:10px;">{msg}</p>\n<hr class="solid">'''
-	await ctx.send(f"```html\n{feed_content}\n```")
+	# await ctx.send(f"```html\n{feed_content}\n```")
 
 	html_lines = media.read_file(filename)
 	changed_lines = []
 	for line in html_lines:
-		if end_break in line:
-			line = line.split(end_break)[0]
-			line += f"\n{feed_content}"
-			line += f"\n{end_break}"
+		if start_break in line:
+			# line = line.split(start_break)[0]
+			# line += f"{start_break}"
+			line += f"\n{feed_content}\n"
+			# line += f"\n{end_break}"
 		changed_lines.append(line)
 	media.write_file(filename, "\n".join(changed_lines))
+	await ctx.send("New feed created.\nhttps://jarjar.tk/")
 
 # PUBLIC COMMAND
 @bot.command(name="help", description="Returns all commands available")
