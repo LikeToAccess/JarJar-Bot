@@ -103,7 +103,7 @@ async def help_menu(ctx):
 # ADMIN ONLY COMMAND
 @bot.command()
 async def find(ctx, *args):
-	if not await check_perms(ctx):
+	if not await check_perms(ctx, log_data=False):
 		return
 	# find <command [player] [count] | player [command] [count] | count>
 	command = args[0].lower() if len(args) >= 1 else False
@@ -208,14 +208,14 @@ async def set_status(activity, status=discord.Status.online):
 	activity = discord.Game(activity) if isinstance(activity, str) else activity
 	await bot.change_presence(status=status, activity=activity)
 
-async def check_perms(ctx):
+async def check_perms(ctx, log_data=True):
 	global allowed_users
 	allowed_users = media.read_file("credentials.md", filter=True)[2:]
 	author = ctx.message.author
 	if str(author.id) in allowed_users:
-		await media.log(ctx, True)
+		if log_data: await media.log(ctx, True)
 		return True
-	await media.log(ctx, False)
+	if log_data: await media.log(ctx, False)
 	return False
 
 def get_author_avatar(ctx):
