@@ -55,7 +55,7 @@ async def on_message(msg):
 		"dumb" in msg.content.lower()):
 			await msg.author.send("Shud up, I'm the GREATEST bot!!!")
 			await dm_profanity(msg.author)
-	print(msg)
+	# print(msg)
 	await bot.process_commands(msg)
 
 
@@ -89,7 +89,7 @@ async def feed(ctx, *args):
 		.replace("</script>","")
 	)
 
-	feed_content = f'''<h4>({current_date})</h4>\n<a href="https://discord.com/users/{author.id}"><img src="{avatar}" alt="Disord user Avatar for {author.name}" align="left" width=45px height=45px style="padding-right:10px">\n{author.name}</a>\n<p style="padding-top:10px;">{msg}</p>\n<hr class="solid">'''
+	feed_content = f'''<div class="pad-left">\n<h4>({current_date})</h4>\n<a href="https://discord.com/users/{author.id}"><img src="{avatar}" alt="Disord user Avatar for {author.name}" align="left" width=45px height=45px class="icon">\n<div style="padding-left:55px">{author.name}</div>\n</a>\n<p style="padding-top:10px;">{msg}</p>\n</div>\n<hr class="solid">'''
 	# await ctx.send(f"```html\n{feed_content}\n```")
 
 	html_lines = media.read_file(filename)
