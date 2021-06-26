@@ -97,6 +97,8 @@ async def feed(ctx, *args):
 async def help_menu(ctx):
 	help_text = "```"
 	for command in bot.commands:
+		if command == "balls":
+			command = "||MYSTERY COMMAND||"
 		help_text+=f"\n{command}"
 	help_text+="\n```"
 	print(help_text)
