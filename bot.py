@@ -41,7 +41,7 @@ async def on_ready():
 	# check_logs.start()
 	print(f"{bot.user} successfuly connected!")
 	# await set_status("you for a fool! John McAfee payed his taxes!", discord.Status.online)
-	await format_status(media.read_file(filenames["launcher_status"][0]))
+	await format_status(media.read_file(filenames["launcher_status"])[0])
 
 # ADMIN ONLY COMMAND
 @bot.command(name="status")
