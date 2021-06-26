@@ -47,6 +47,11 @@ async def on_ready():
 async def on_message(msg):
 	if msg.content.lower().startswith("ping"):
 		await msg.channel.send("Pong!")
+	elif "bot" in msg.content.lower() and (
+		"fucked" in msg.content.lower() or \
+		"bad" in msg.content.lower() or \
+		"dumb" in msg.content.lower()):
+			await dm_profanity(msg.author)
 	await bot.process_commands(msg)
 
 
@@ -108,10 +113,7 @@ async def help_menu(ctx):
 # PUBLIC COMMAND
 @bot.command(aliases=["yaaminudes","nudes","sex","amogus"])
 async def balls(ctx):
-	sentance_length = 5
-	words = media.read_file(filenames["bad_words"])
-	msg = " ".join([random.choice(words) for i in range(sentance_length)]).capitalize() + "."
-	await ctx.author.send(msg)
+	await dm_profanity(ctx.author, sentance_length=5)
 
 # PUBLIC COMMAND
 @bot.command()
@@ -220,6 +222,13 @@ async def update(ctx, *args):
 	except OSError as error:
 		await ctx.send(f"Error:\n```{error}```")
 
+
+async def dm_profanity(author=False, sentance_length=5):
+	words = media.read_file(filenames["bad_words"])
+	msg = " ".join([random.choice(words) for i in range(sentance_length)]).capitalize() + "."
+	if author:
+		await author.send(msg)
+	return msg
 
 async def format_status(msg):
 	if "down" in msg.lower() or "off" in msg.lower():
