@@ -25,6 +25,7 @@ filenames = {
 	"launcher_status": "launcher_status.txt",
 	"credentials":     "credentials.md",
 	"bad_words":       "bad_words.txt",
+	"update_log":      "out.txt",
 }
 credentials = media.read_file(filenames["credentials"], filter=True)
 token = credentials[0]
@@ -193,10 +194,10 @@ async def auth(ctx, user:discord.Member):
 
 # ADMIN ONLY COMMAND
 @bot.command()
-async def update(ctx):
+async def update(ctx, *args):
 	if not await check_perms(ctx):
 		return
-	filename = "out.txt"
+	filename = filenames["update_log"]
 	media.remove_file(filename)
 	try:
 		os.system(f"update.cmd >> {filename}")
@@ -206,6 +207,7 @@ async def update(ctx):
 		quit()
 	except OSError as error:
 		await ctx.send(f"Error:\n```{error}```")
+
 
 async def format_status(msg):
 	if "down" in msg.lower() or "off" in msg.lower():
