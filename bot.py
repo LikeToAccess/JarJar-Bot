@@ -47,7 +47,7 @@ async def on_ready():
 async def on_message(msg):
 	if msg.content.lower().startswith("ping"):
 		await msg.channel.send("Pong!")
-	await bot.process_commands(message)
+	await bot.process_commands(msg)
 
 
 # ADMIN ONLY COMMAND
