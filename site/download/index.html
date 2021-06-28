@@ -6,7 +6,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, shrink-to-fit=no, user-scalable=no">
 	<title>JarJar</title>
 	<link href="../style.css" rel="stylesheet" type="text/css">
-	<link rel="icon" href="https://cdn.discordapp.com/icons/851866843501035570/a_fef502d9d992ff333d4074edd1342286.gif?size=1024" type="image/gif"/>
+	<link rel="icon" href="https://cdn.discordapp.com/attachments/776344719453847552/859012819759661066/a_fef502d9d992ff333d4074edd1342286.png" type="image/png"/>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js">
 	</script>
 	<meta name="title" content="JarJar">
@@ -46,7 +46,7 @@
 	<!-- NAVIGATION BAR END -->
 	<div class="content">
 	<div class="pad-bot"></div>
-	<img id="logo" src="https://cdn.discordapp.com/icons/851866843501035570/a_fef502d9d992ff333d4074edd1342286.png?size=1024" height="50" width="50" class="icon">
+	<img id="logo" src="https://cdn.discordapp.com/attachments/776344719453847552/859012819759661066/a_fef502d9d992ff333d4074edd1342286.png" height="50" width="50" class="icon">
 
 
 	<!-- MAIN CONTENT -->
@@ -55,11 +55,11 @@
 		<div class="pad-left">
 			<p>Limited Beta</p>
 				<div style="padding-left:10px;">
-				<a href="https://cdn.discordapp.com/attachments/857411312875470848/857981812592607242/JarJar.zip" class="download_link">
+				<a href="" class="download_link">
 					<span id="download_link_id">Bedrock Beta</span>
 				</a>
 				<div style="padding:3px;"></div>
-				<a href="https://cdn.discordapp.com/attachments/857411312875470848/858030127622127636/JarJar_Launcher.exe" class="download_link">
+				<a href="">
 					<span id="download_link_id">New Launcher</span>
 				</a>
 				</div>
@@ -70,12 +70,21 @@
 
 		</div>
 		<!-- SCRIPTING -->
-		<script src="../script.js"></script>
+		<script>
+			document.getElementById("download_link_id").onclick = function() {
+				alert("You need BETA for this! Enjoy some music instead?");
+
+				url = "https://youtu.be/dQw4w9WgXcQ";
+				window.open(
+					url, "JarJar Download", "height=400, width=600, modal=yes, alwaysRaised=yes"
+				);
+			};
+		</script>
 
 		<!-- DISCORD LINK THINGY -->
 		<center>
 			<a href="../discord-invite">
-				<img class="pad-top" id="logo_wide" src="../logo-wide.png">
+				<img class="pad-top" id="logo_wide" src="https://cdn.discordapp.com/splashes/851866843501035570/763d94f6dcb9dd9b1b6fdf1653f2dc1d.png?size=512">
 			</a>
 		</center>
 		</div>
