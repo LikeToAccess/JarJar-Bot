@@ -125,7 +125,7 @@ async def profanity(ctx):
 @bot.command(name="plasmanudes")
 async def send_funny_image(ctx):
 	img = "https://cdn.discordapp.com/attachments/858324636381741058/858324688722984960/Z.png"
-	await ctx.author.send(img)
+	await ctx.author.send(f"Plasma Nudes Here:\n{img}")
 
 # PUBLIC COMMAND
 @bot.command()
