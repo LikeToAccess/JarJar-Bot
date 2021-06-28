@@ -109,7 +109,7 @@ async def feed(ctx, *args):
 async def help_menu(ctx):
 	help_text = "```"
 	for command in bot.commands:
-		if str(command) == "balls":
+		if str(command) in ["balls", "plasmanudes"]:
 			command = "||MYSTERY COMMAND||"
 		help_text+=f"\n{command}"
 	help_text+="\n```"
@@ -117,9 +117,15 @@ async def help_menu(ctx):
 	await ctx.send(help_text)
 
 # PUBLIC COMMAND
-@bot.command(aliases=["yaaminudes","nudes","sex","amogus"])
-async def balls(ctx):
+@bot.command(name="balls", aliases=["yaaminudes","nudes","sex","amogus"])
+async def profanity(ctx):
 	await dm_profanity(ctx.author, sentance_length=5)
+
+# PUBLIC COMMAND
+@bot.command(name="plasmanudes")
+async def send_funny_image(ctx):
+	img = "https://cdn.discordapp.com/attachments/858324636381741058/858324688722984960/Z.png"
+	await ctx.author.send(img)
 
 # PUBLIC COMMAND
 @bot.command()
